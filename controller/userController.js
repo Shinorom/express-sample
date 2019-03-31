@@ -10,7 +10,7 @@ const mongojsDb = mongojs(databaseUrl);
 const db = mongoist(mongojsDb);
 
 /*
-Request
+RequestuserDetail
 * id : "5721602287"
 * */
 router.get("/getDetail", async (req, res) => {
