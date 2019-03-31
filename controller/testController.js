@@ -8,7 +8,8 @@ let responseObject = {
     result: ""
 }
 
-router.get("/getData",  (req, res) => {
+
+router.get("/getData1",  (req, res) => {
     let result = Number(req.query.key1) + Number( req.query.key2);
     res.send({ sum : result })
 });
@@ -16,6 +17,25 @@ router.get("/getData",  (req, res) => {
 router.get("/getTriangleArea",  (req, res) => {
     let result = Number((1/2)*req.query.base*req.query.height);
     res.send({TriangleArea : result })
+});
+
+router.get("/getData",  (req, res) => {
+   
+    // let msg = "";
+    responseObject = {
+        msg: "",
+        result: ""
+    }
+
+    console.log("message", req.query);
+    
+    if(!req.query.key1||!req.query.key2){
+        responseObject.msg = "Bad request";
+    }else{
+       responseObject.msg = "success";
+       responseObject.result = (Number(req.query.key1) * Number( req.query.key2)).toFixed(2);
+    } 
+    res.send({sum : responseObject.result,status : responseObject.msg })
 });
 
 router.get("/getBMI",  (req, res) => {
@@ -44,7 +64,6 @@ router.post("/postData",async  (req, res) => {
         msg: "",
         result: ""
     }
-
      if(!req.body.key){
          responseObject.msg = "Bad request";
      }else{
